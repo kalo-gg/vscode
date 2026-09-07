@@ -66,7 +66,7 @@ async function openFromPrompt(context: vscode.ExtensionContext) {
   const value = await vscode.window.showInputBox({
     title: "Kalo: open a course project",
     prompt: "The project's address on kalo.gg, after /courses/",
-    placeHolder: "jecs/mastery/project",
+    placeHolder: "jecs/mastery/project-wave-survival",
     validateInput: (v) => {
       const parts = v.trim().split("/");
       return parts.length === 3 && parts.every(isSlug) ? undefined : "course/module/lesson, as in the lesson's address";
