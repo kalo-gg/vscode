@@ -23,7 +23,8 @@ interface Manifest {
   title: string;
   courseTitle: string;
   url: string;
-  runtime: "luau" | "rojo";
+  /** "static" is a project with no runtime at all (the tool courses); nothing here branches on the value. */
+  runtime: "luau" | "rojo" | "static";
   entry: string | null;
   project: string | null;
   readOnly: string[];
