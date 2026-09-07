@@ -1,0 +1,39 @@
+{
+  "name": "kalo",
+  "displayName": "Kalo",
+  "description": "Do Kalo course projects in VS Code: fetches a project's starter files from kalo.gg and opens them.",
+  "version": "0.1.0",
+  "publisher": "kalo-gg",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/kalo-gg/vscode.git" },
+  "homepage": "https://kalo.gg",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Education", "Other"],
+  "keywords": ["luau", "roblox", "jecs", "kalo"],
+  "activationEvents": ["onUri", "onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [{ "command": "kalo.openProject", "title": "Kalo: Open a course project" }],
+    "configuration": {
+      "title": "Kalo",
+      "properties": {
+        "kalo.projectsFolder": {
+          "type": "string",
+          "default": "",
+          "description": "Where projects are set up, one folder per course and lesson. Empty means a kalo folder in your home directory."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.3.0",
+    "typescript": "^5.5.0"
+  }
+}
