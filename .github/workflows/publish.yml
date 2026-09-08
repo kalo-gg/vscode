@@ -44,8 +44,12 @@ jobs:
       # The release comes first so the package is downloadable even when the
       # Marketplace turns the upload away; the run still fails, visibly.
       - name: Attach the package to a GitHub release
-        # A re-run of the same tag finds its release already there and keeps it.
-        run: gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1 || gh release create "${GITHUB_REF_NAME}" kalo-*.vsix --title "${GITHUB_REF_NAME}" --generate-notes
+        # A re-run of the same tag finds its release already there and keeps
+        # it. Moving a tag turns its release into a draft, so it is published
+        # again either way.
+        run: |
+          gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1 || gh release create "${GITHUB_REF_NAME}" kalo-*.vsix --title "${GITHUB_REF_NAME}" --generate-notes
+          gh release edit "${GITHUB_REF_NAME}" --draft=false
         env:
           GH_TOKEN: ${{ github.token }}
 
