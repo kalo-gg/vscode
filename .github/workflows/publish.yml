@@ -7,7 +7,7 @@
 # release, so what people install is what the release page offers.
 #
 # Secret (repository settings > Secrets and variables > Actions):
-#   VSCE_PAT  an Azure DevOps personal access token for the `kalo-gg`
+#   VSCE_PAT  an Azure DevOps personal access token for the `ryancundiff`
 #             publisher, scope "Marketplace > Manage", organization "All
 #             accessible organizations"
 name: Publish

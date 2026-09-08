@@ -7,7 +7,7 @@ import * as path from "node:path";
  * Kalo for VS Code, first pass: open a course project here.
  *
  * A project lesson on kalo.gg has an "Open in VS Code" button that opens
- * vscode://kalo-gg.kalo/open?course=…&module=…&lesson=… . This extension
+ * vscode://ryancundiff.kalo/open?course=…&module=…&lesson=… . This extension
  * answers that link (and the "Kalo: Open a course project" command) by
  * fetching the project's starter files from the site, writing them into a
  * folder of their own, and opening it with the entry file showing. Tasks are

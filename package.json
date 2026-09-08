@@ -3,7 +3,7 @@
   "displayName": "Kalo",
   "description": "Do Kalo course projects in VS Code: fetches a project's starter files from kalo.gg and opens them.",
   "version": "0.1.0",
-  "publisher": "kalo-gg",
+  "publisher": "ryancundiff",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/kalo-gg/vscode.git" },
   "homepage": "https://kalo.gg",
