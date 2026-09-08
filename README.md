@@ -1,4 +1,4 @@
-# Kalo for VS Code
+# Kalo Projects
 
 Do [Kalo](https://kalo.gg) course projects in your own editor.
 
