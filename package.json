@@ -5,15 +5,36 @@
   "version": "0.1.0",
   "publisher": "kalo-gg",
   "license": "MIT",
-  "repository": { "type": "git", "url": "https://github.com/kalo-gg/vscode.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kalo-gg/vscode.git"
+  },
   "homepage": "https://kalo.gg",
-  "engines": { "vscode": "^1.90.0" },
-  "categories": ["Education", "Other"],
-  "keywords": ["luau", "roblox", "jecs", "kalo"],
-  "activationEvents": ["onUri", "onStartupFinished"],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "keywords": [
+    "luau",
+    "roblox",
+    "jecs",
+    "kalo"
+  ],
+  "activationEvents": [
+    "onUri",
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{ "command": "kalo.openProject", "title": "Kalo: Open a course project" }],
+    "commands": [
+      {
+        "command": "kalo.openProject",
+        "title": "Kalo: Open a course project"
+      }
+    ],
     "configuration": {
       "title": "Kalo",
       "properties": {
@@ -35,7 +56,6 @@
     "@types/node": "^20.14.0",
     "@types/vscode": "^1.90.0",
     "@vscode/vsce": "^3.3.0",
-    "ovsx": "^1.1.1",
     "typescript": "^5.5.0"
   }
 }
