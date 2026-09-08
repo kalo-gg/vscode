@@ -18,14 +18,14 @@ files back.
 
 ## Installing
 
-Until it is on the marketplace, build it and install the `.vsix`:
+Download the `.vsix` from the [latest release](https://github.com/kalo-gg/vscode/releases/latest)
+and install it from the Extensions view (**...** > **Install from VSIX...**), or:
 
 ```sh
-npm install
-npm run compile
-npm run package   # writes kalo-<version>.vsix
 code --install-extension kalo-0.1.0.vsix
 ```
+
+To build it yourself, `npm install`, `npm run compile`, then `npm run package`.
 
 ## What it does not do yet
 
