@@ -1,0 +1,25 @@
+# Every push and pull request compiles the extension and packages it, so a
+# change that would break `vsce package` is caught before a release tag.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - run: npx vsce package --out kalo.vsix
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kalo.vsix
+          path: kalo.vsix

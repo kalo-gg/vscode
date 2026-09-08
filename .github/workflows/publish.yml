@@ -1,0 +1,58 @@
+# Publishes a release to the VS Code Marketplace and to Open VSX.
+#
+# A release is a tag: bump `version` in package.json, commit, then
+#   git tag v0.1.1 && git push origin v0.1.1
+# The tag has to match the version, so the two cannot drift. One package is
+# built once and the same .vsix goes to both registries and onto a GitHub
+# release, so what people install is what the release page offers.
+#
+# Secrets (repository settings > Secrets and variables > Actions):
+#   VSCE_PAT  an Azure DevOps personal access token for the `kalo-gg`
+#             publisher, scope "Marketplace > Manage", organization "All
+#             accessible organizations"
+#   OVSX_PAT  an open-vsx.org access token for the `kalo-gg` namespace
+name: Publish
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write # the GitHub release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: The tag names the packaged version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [ "v$version" != "${GITHUB_REF_NAME}" ]; then
+            echo "package.json is $version but the tag is ${GITHUB_REF_NAME}" >&2
+            exit 1
+          fi
+
+      - run: npm run compile
+      - run: npx vsce package --out "kalo-${GITHUB_REF_NAME#v}.vsix"
+
+      - name: Publish to the VS Code Marketplace
+        run: npx vsce publish --packagePath kalo-*.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX
+        run: npx ovsx publish kalo-*.vsix
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
+      - name: Attach the package to a GitHub release
+        run: gh release create "${GITHUB_REF_NAME}" kalo-*.vsix --title "${GITHUB_REF_NAME}" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
