@@ -10,6 +10,15 @@ Tasks are still checked on the site.
 There is also a command, **Kalo: Open a course project**, which asks for the
 project's address (`course/module/lesson`, as in the lesson's URL).
 
+## Sending your work back
+
+Run **Kalo: Sign in**. It opens kalo.gg with a code; approve it there and the
+editor is connected to your account. From then on every save sends the
+project's files to your account (turn that off with `kalo.syncOnSave`), and
+**Kalo: Send project to kalo.gg** does it on demand. Open the lesson and it
+picks up your files; check the tasks there. Signed-in editors are listed on
+your account page, where you can sign them out.
+
 ## Where the files go
 
 `~/kalo/<course>/<lesson>` by default. Set `kalo.projectsFolder` to use another
@@ -22,12 +31,11 @@ Download the `.vsix` from the [latest release](https://github.com/kalo-gg/vscode
 and install it from the Extensions view (**...** > **Install from VSIX...**), or:
 
 ```sh
-code --install-extension kalo-0.1.0.vsix
+code --install-extension kalo-0.2.0.vsix
 ```
 
 To build it yourself, `npm install`, `npm run compile`, then `npm run package`.
 
 ## What it does not do yet
 
-No sign-in, no progress sync, no checking tasks from the editor. Those are
-later passes; the site is where tasks are graded.
+No checking tasks from the editor: the site is where tasks are graded.

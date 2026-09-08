@@ -1,8 +1,8 @@
 {
   "name": "kalo-projects",
   "displayName": "Kalo Projects",
-  "description": "Do Kalo course projects in VS Code: fetches a project's starter files from kalo.gg and opens them.",
-  "version": "0.1.0",
+  "description": "Do Kalo course projects in your editor: opens a lesson's starter files, and sends your work back to your kalo.gg account.",
+  "version": "0.2.0",
   "publisher": "ryancundiff",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/kalo-gg/vscode.git" },
@@ -13,7 +13,12 @@
   "activationEvents": ["onUri", "onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{ "command": "kalo.openProject", "title": "Kalo: Open a course project" }],
+    "commands": [
+      { "command": "kalo.openProject", "title": "Kalo: Open a course project" },
+      { "command": "kalo.sendProject", "title": "Kalo: Send project to kalo.gg" },
+      { "command": "kalo.signIn", "title": "Kalo: Sign in" },
+      { "command": "kalo.signOut", "title": "Kalo: Sign out" }
+    ],
     "configuration": {
       "title": "Kalo",
       "properties": {
@@ -21,6 +26,21 @@
           "type": "string",
           "default": "",
           "description": "Where projects are set up, one folder per course and lesson. Empty means a kalo folder in your home directory."
+        },
+        "kalo.syncOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Send the project to your kalo.gg account after every save, once you are signed in."
+        },
+        "kalo.site": {
+          "type": "string",
+          "default": "https://kalo.gg",
+          "description": "The Kalo site projects are fetched from. Only change this to develop against a local copy of Kalo."
+        },
+        "kalo.api": {
+          "type": "string",
+          "default": "https://api.kalo.gg",
+          "description": "The Kalo API sign-in and project files go to. Only change this to develop against a local copy of Kalo."
         }
       }
     }
