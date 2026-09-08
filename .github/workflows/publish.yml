@@ -41,12 +41,14 @@ jobs:
       - run: npm run compile
       - run: npx vsce package --out "kalo-${GITHUB_REF_NAME#v}.vsix"
 
-      - name: Publish to the VS Code Marketplace
-        run: npx vsce publish --packagePath kalo-*.vsix
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
-
+      # The release comes first so the package is downloadable even when the
+      # Marketplace turns the upload away; the run still fails, visibly.
       - name: Attach the package to a GitHub release
         run: gh release create "${GITHUB_REF_NAME}" kalo-*.vsix --title "${GITHUB_REF_NAME}" --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Publish to the VS Code Marketplace
+        run: npx vsce publish --packagePath kalo-*.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
